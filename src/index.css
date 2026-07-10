@@ -1,0 +1,62 @@
+/* CSS 초기화 */
+* {
+  box-sizing: border-box;
+}
+
+/* HTML, Body 초기화 */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Root 앱 컨테이너 설정 */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 컬러 팔레트 디자인 시스템 (BOOK COVER ARCHIVE 참고) */
+:root {
+  /* Primary Colors */
+  --color-primary: #1A1A1A;
+  --color-primary-light: #333333;
+  --color-primary-dark: #000000;
+
+  /* Secondary Colors */
+  --color-secondary: #FFFFFF;
+  --color-accent: #E8332A;
+
+  /* Background Colors */
+  --color-bg-primary: #FFFFFF;
+  --color-bg-secondary: #F5F5F5;
+
+  /* Text Colors */
+  --color-text-primary: #000000;
+  --color-text-secondary: #333333;
+  --color-text-muted: #757575;
+
+  /* Interactive Colors */
+  --color-button-primary: #000000;
+  --color-button-hover: #333333;
+  --color-link: #0A2A5E;
+  --color-link-hover: #E8332A;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-primary: #0F0F0F;
+    --color-bg-secondary: #1A1A1A;
+    --color-text-primary: #FFFFFF;
+    --color-text-secondary: #E0E0E0;
+    --color-text-muted: #9E9E9E;
+    --color-button-primary: #FFFFFF;
+    --color-button-hover: #CCCCCC;
+    --color-link: #6C9BD8;
+    --color-link-hover: #E8332A;
+  }
+}
