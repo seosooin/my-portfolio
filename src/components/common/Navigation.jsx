@@ -19,11 +19,16 @@ function Navigation() {
 
   return (
     <AppBar position="sticky" sx={{ bgcolor: 'primary.main' }}>
-      <Toolbar sx={{ justifyContent: 'space-between', px: { xs: 2, md: 3 } }}>
-        <Typography variant="h6" sx={{ fontWeight: 700 }}>
+      <Toolbar sx={{ justifyContent: 'space-between', alignItems: 'stretch', px: { xs: 2, md: 3 } }}>
+        <Typography variant="h6" sx={{ fontWeight: 700, alignSelf: 'center' }}>
           My Portfolio
         </Typography>
-        <Tabs value={currentPath} textColor="inherit" indicatorColor="secondary">
+        <Tabs
+          value={currentPath}
+          textColor="inherit"
+          indicatorColor="secondary"
+          sx={{ height: '100%', '& .MuiTabs-flexContainer': { height: '100%' } }}
+        >
           {NAV_ITEMS.map((item) => (
             <Tab
               key={item.path}
