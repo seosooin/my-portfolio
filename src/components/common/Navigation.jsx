@@ -27,7 +27,7 @@ function Navigation() {
           value={currentPath}
           textColor="inherit"
           indicatorColor="secondary"
-          sx={{ height: '100%', '& .MuiTabs-flexContainer': { height: '100%' } }}
+          sx={{ alignSelf: 'flex-end' }}
         >
           {NAV_ITEMS.map((item) => (
             <Tab
