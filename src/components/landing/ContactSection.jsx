@@ -31,10 +31,10 @@ function ContactSection() {
         </Typography>
 
         <Grid container spacing={3}>
-          <Grid size={{ xs: 12, md: 6 }}>
+          <Grid size={{ xs: 12, md: 6 }} sx={{ order: { xs: 2, md: 1 } }}>
             <GuestbookForm onSubmit={addEntry} isSubmitting={submitting} />
           </Grid>
-          <Grid size={{ xs: 12, md: 6 }}>
+          <Grid size={{ xs: 12, md: 6 }} sx={{ order: { xs: 1, md: 2 } }}>
             <ContactInfoPanel />
           </Grid>
           <Grid size={{ xs: 12 }}>
