@@ -3,13 +3,14 @@ import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
+import Rating from '@mui/material/Rating';
 
 /**
  * GuestbookList 컴포넌트
  * 등록된 방명록을 최신순으로 나열하고, 더 볼 항목이 있으면 더보기 버튼을 표시한다.
  *
  * Props:
- * @param {Array} entries - 방명록 항목 배열 { id, name, message, created_at } [Required]
+ * @param {Array} entries - 방명록 항목 배열 { id, name, message, emoji, rating, created_at } [Required]
  * @param {boolean} hasMore - 더 불러올 항목이 있는지 여부 [Required]
  * @param {boolean} isLoading - 로딩 중 여부 [Optional, 기본값: false]
  * @param {function} onLoadMore - 더보기 버튼 클릭 시 실행할 함수 [Required]
@@ -56,11 +57,15 @@ function GuestbookList({ entries, hasMore, isLoading = false, onLoadMore }) {
               }}
             >
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                <Box sx={{ fontWeight: 700, fontSize: '0.95rem' }}>{entry.name}</Box>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
+                  {entry.emoji && <Box component="span" sx={{ fontSize: '1.1rem' }}>{entry.emoji}</Box>}
+                  <Box sx={{ fontWeight: 700, fontSize: '0.95rem' }}>{entry.name}</Box>
+                </Box>
                 <Box sx={{ fontSize: '0.75rem', color: 'text.secondary' }}>
                   {new Date(entry.created_at).toLocaleDateString('ko-KR')}
                 </Box>
               </Box>
+              {entry.rating && <Rating value={entry.rating} readOnly size="small" />}
               <Box sx={{ fontSize: '0.9rem', color: 'text.secondary', lineHeight: 1.6 }}>
                 {entry.message}
               </Box>

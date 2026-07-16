@@ -22,7 +22,7 @@ function useGuestbook() {
     setLoading(true);
     const { data, error: fetchError, count } = await supabase
       .from('guestbook_public')
-      .select('id, name, message, created_at', { count: 'exact' })
+      .select('id, name, message, emoji, rating, created_at', { count: 'exact' })
       .order('created_at', { ascending: false })
       .range(0, limit - 1);
 
@@ -44,13 +44,15 @@ function useGuestbook() {
     setVisibleCount((prev) => prev + PAGE_SIZE);
   }, []);
 
-  const addEntry = useCallback(async ({ name, message, email, phone }) => {
+  const addEntry = useCallback(async ({ name, message, email, phone, emoji, rating }) => {
     setSubmitting(true);
     const { error: insertError } = await supabase.from('guestbook').insert({
       name,
       message,
       email: email || null,
       phone: phone || null,
+      emoji: emoji || null,
+      rating: rating || null,
     });
     setSubmitting(false);
 

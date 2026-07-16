@@ -6,12 +6,16 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
+import Rating from '@mui/material/Rating';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
-const INITIAL_FORM = { name: '', message: '', email: '', phone: '' };
+const INITIAL_FORM = { name: '', message: '', email: '', phone: '', emoji: '', rating: null };
+const EMOJI_OPTIONS = ['😊', '🎉', '👍', '🔥', '✨', '🙌'];
 
 /**
  * GuestbookForm 컴포넌트
- * 방명록 작성 폼. 이름/메시지는 필수, 이메일/전화번호는 선택 입력이다.
+ * 방명록 작성 폼. 이름/메시지는 필수, 이메일/전화번호/이모지/별점은 선택 입력이다.
  *
  * Props:
  * @param {function} onSubmit - 폼 제출 시 실행할 함수(값 객체를 인자로 받아 boolean 성공 여부를 반환) [Required]
@@ -98,6 +102,32 @@ function GuestbookForm({ onSubmit, isSubmitting = false }) {
             fullWidth
             size="small"
           />
+
+          <Box>
+            <Box sx={{ fontSize: '0.8rem', color: 'text.secondary', mb: 1 }}>
+              오늘 기분 이모지 (선택)
+            </Box>
+            <ToggleButtonGroup
+              value={form.emoji}
+              exclusive
+              onChange={(event, value) => setForm((prev) => ({ ...prev, emoji: value ?? '' }))}
+              size="small"
+            >
+              {EMOJI_OPTIONS.map((emoji) => (
+                <ToggleButton key={emoji} value={emoji} sx={{ fontSize: '1.2rem', px: 1.5 }}>
+                  {emoji}
+                </ToggleButton>
+              ))}
+            </ToggleButtonGroup>
+          </Box>
+
+          <Box>
+            <Box sx={{ fontSize: '0.8rem', color: 'text.secondary', mb: 1 }}>별점 (선택)</Box>
+            <Rating
+              value={form.rating}
+              onChange={(event, value) => setForm((prev) => ({ ...prev, rating: value }))}
+            />
+          </Box>
 
           {status && <Alert severity={status.type}>{status.text}</Alert>}
 
