@@ -13,7 +13,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 const CONTACT_EMAIL = 'ssooin73@gmail.com';
 
 const INFO_ITEMS = [
-  { label: 'Location', value: '광주광역시', icon: LocationOnRoundedIcon },
+  { label: 'Location', value: '대한민국, 광주광역시', icon: LocationOnRoundedIcon },
   { label: 'Response Time', value: '평일 9:00-18:00', icon: AccessTimeRoundedIcon },
 ];
 
