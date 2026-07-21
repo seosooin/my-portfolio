@@ -4,8 +4,10 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import Skeleton from '@mui/material/Skeleton';
 import LaunchIcon from '@mui/icons-material/Launch';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import useThumbnail from '../../hooks/useThumbnail';
 
 /**
  * ProjectCard 컴포넌트
@@ -23,6 +25,8 @@ import GitHubIcon from '@mui/icons-material/GitHub';
  * <ProjectCard title="..." description="..." techStack={['React']} projectType="개인" detailUrl="..." thumbnailUrl="..." />
  */
 function ProjectCard({ title, description, techStack, projectType, detailUrl, githubUrl, thumbnailUrl }) {
+  const { src: thumbnailSrc, isLoading: thumbnailLoading } = useThumbnail(thumbnailUrl);
+
   return (
     <Card
       elevation={0}
@@ -39,18 +43,31 @@ function ProjectCard({ title, description, techStack, projectType, detailUrl, gi
         },
       }}
     >
-      <Box
-        component="img"
-        src={thumbnailUrl}
-        alt={`${title} 썸네일`}
-        sx={{
-          width: { xs: '100%', sm: 300 },
-          height: { xs: 'auto', sm: 300 },
-          aspectRatio: '1 / 1',
-          objectFit: 'cover',
-          flexShrink: 0,
-        }}
-      />
+      {thumbnailLoading ? (
+        <Skeleton
+          variant="rectangular"
+          animation="wave"
+          sx={{
+            width: { xs: '100%', sm: 300 },
+            height: { xs: 'auto', sm: 300 },
+            aspectRatio: '1 / 1',
+            flexShrink: 0,
+          }}
+        />
+      ) : (
+        <Box
+          component="img"
+          src={thumbnailSrc}
+          alt={`${title} 썸네일`}
+          sx={{
+            width: { xs: '100%', sm: 300 },
+            height: { xs: 'auto', sm: 300 },
+            aspectRatio: '1 / 1',
+            objectFit: 'cover',
+            flexShrink: 0,
+          }}
+        />
+      )}
       <CardContent sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 1, p: { xs: 2, md: 3 } }}>
         <Typography variant="h6" sx={{ fontSize: { xs: '1.1rem', md: '1.3rem' }, fontWeight: 700 }}>
           {title}
