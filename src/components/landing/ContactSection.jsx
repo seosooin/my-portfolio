@@ -6,12 +6,14 @@ import GuestbookForm from './contact/GuestbookForm';
 import ContactInfoPanel from './contact/ContactInfoPanel';
 import GuestbookList from './contact/GuestbookList';
 import useGuestbook from '../../hooks/useGuestbook';
+import ScrollReveal from '../ui/ScrollReveal';
 
 function ContactSection() {
   const { entries, hasMore, loading, submitting, loadMore, addEntry } = useGuestbook();
 
   return (
     <Box
+      id="contact-section"
       component="section"
       sx={{ width: '100%', bgcolor: 'primary.dark', color: 'primary.contrastText', py: { xs: 6, md: 10 } }}
     >
@@ -32,18 +34,24 @@ function ContactSection() {
 
         <Grid container spacing={3}>
           <Grid size={{ xs: 12, md: 6 }} sx={{ order: { xs: 2, md: 1 } }}>
-            <GuestbookForm onSubmit={addEntry} isSubmitting={submitting} />
+            <ScrollReveal direction="left">
+              <GuestbookForm onSubmit={addEntry} isSubmitting={submitting} />
+            </ScrollReveal>
           </Grid>
           <Grid size={{ xs: 12, md: 6 }} sx={{ order: { xs: 1, md: 2 } }}>
-            <ContactInfoPanel />
+            <ScrollReveal direction="right" delay={0.1}>
+              <ContactInfoPanel />
+            </ScrollReveal>
           </Grid>
           <Grid size={{ xs: 12 }}>
-            <GuestbookList
-              entries={entries}
-              hasMore={hasMore}
-              isLoading={loading}
-              onLoadMore={loadMore}
-            />
+            <ScrollReveal delay={0.2}>
+              <GuestbookList
+                entries={entries}
+                hasMore={hasMore}
+                isLoading={loading}
+                onLoadMore={loadMore}
+              />
+            </ScrollReveal>
           </Grid>
         </Grid>
       </Container>

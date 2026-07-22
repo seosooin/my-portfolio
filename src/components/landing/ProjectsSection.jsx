@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import useProjects from '../../hooks/useProjects';
 import ProjectThumbnailCard from './ProjectThumbnailCard';
+import ScrollReveal from '../ui/ScrollReveal';
 
 const FEATURED_COUNT = 4;
 
@@ -15,7 +16,7 @@ function ProjectsSection() {
   const featuredProjects = projects.slice(0, FEATURED_COUNT);
 
   return (
-    <Box component="section" sx={{ width: '100%', bgcolor: 'background.default', py: { xs: 6, md: 10 } }}>
+    <Box id="projects-section" component="section" sx={{ width: '100%', bgcolor: 'background.default', py: { xs: 6, md: 10 } }}>
       <Container maxWidth="md" sx={{ px: { xs: 2, md: 3 } }}>
         <Box sx={{ textAlign: 'center', mb: { xs: 3, md: 4 } }}>
           <Typography
@@ -52,13 +53,15 @@ function ProjectsSection() {
 
         {!loading && !error && featuredProjects.length > 0 && (
           <Grid container spacing={3}>
-            {featuredProjects.map((project) => (
+            {featuredProjects.map((project, index) => (
               <Grid key={project.id} size={{ xs: 12, sm: 6, md: 3 }}>
-                <ProjectThumbnailCard
-                  title={project.title}
-                  detailUrl={project.detail_url}
-                  thumbnailUrl={project.thumbnail_url}
-                />
+                <ScrollReveal delay={index * 0.12}>
+                  <ProjectThumbnailCard
+                    title={project.title}
+                    detailUrl={project.detail_url}
+                    thumbnailUrl={project.thumbnail_url}
+                  />
+                </ScrollReveal>
               </Grid>
             ))}
           </Grid>

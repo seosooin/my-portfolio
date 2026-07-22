@@ -4,6 +4,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import ThemeToggle from './ThemeToggle';
 
 const NAV_ITEMS = [
   { label: 'Home', path: '/' },
@@ -23,22 +25,25 @@ function Navigation() {
         <Typography variant="h6" sx={{ fontWeight: 700, alignSelf: 'center' }}>
           My Portfolio
         </Typography>
-        <Tabs
-          value={currentPath}
-          textColor="inherit"
-          indicatorColor="secondary"
-          sx={{ alignSelf: 'flex-end' }}
-        >
-          {NAV_ITEMS.map((item) => (
-            <Tab
-              key={item.path}
-              label={item.label}
-              value={item.path}
-              component={Link}
-              to={item.path}
-            />
-          ))}
-        </Tabs>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1, md: 2 } }}>
+          <Tabs
+            value={currentPath}
+            textColor="inherit"
+            indicatorColor="secondary"
+            sx={{ alignSelf: 'flex-end' }}
+          >
+            {NAV_ITEMS.map((item) => (
+              <Tab
+                key={item.path}
+                label={item.label}
+                value={item.path}
+                component={Link}
+                to={item.path}
+              />
+            ))}
+          </Tabs>
+          <ThemeToggle />
+        </Box>
       </Toolbar>
     </AppBar>
   );

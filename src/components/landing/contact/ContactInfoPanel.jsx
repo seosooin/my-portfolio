@@ -18,9 +18,9 @@ const INFO_ITEMS = [
 ];
 
 const SOCIAL_LINKS = [
-  { label: 'GitHub', href: '#', icon: GitHubIcon },
-  { label: 'LinkedIn', href: '#', icon: LinkedInIcon },
-  { label: 'Instagram', href: '#', icon: InstagramIcon },
+  { label: 'GitHub', href: 'https://github.com/seosooin', icon: GitHubIcon },
+  { label: 'LinkedIn', href: null, icon: LinkedInIcon },
+  { label: 'Instagram', href: null, icon: InstagramIcon },
 ];
 
 /**
@@ -99,16 +99,17 @@ function ContactInfoPanel() {
             {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (
               <IconButton
                 key={label}
-                component="a"
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
+                component={href ? 'a' : 'button'}
+                href={href || undefined}
+                target={href ? '_blank' : undefined}
+                rel={href ? 'noopener noreferrer' : undefined}
+                disabled={!href}
                 aria-label={label}
                 sx={{
                   bgcolor: 'background.default',
                   border: '1px solid',
                   borderColor: 'divider',
-                  '&:hover': { bgcolor: 'var(--color-accent)', color: 'var(--color-secondary)' },
+                  '&:hover': href ? { bgcolor: 'var(--color-accent)', color: 'var(--color-secondary)' } : undefined,
                 }}
               >
                 <Icon fontSize="small" />
